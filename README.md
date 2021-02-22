@@ -1,4 +1,4 @@
-# K4Community-plus-web
+
 
 Sample of cypress reports using mochaawesome html report 
 
