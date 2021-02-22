@@ -15,11 +15,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Install dependencies
-        run: |
-          npm ci
-          $(npm bin)/cypress cache path
-          $(npm bin)/cypress cache list
-          $(npm bin)/cypress verify
+        run: npm install
+        
       - name: Run Cypress tests
         timeout-minutes: 15
         run: npm run test:cypress
