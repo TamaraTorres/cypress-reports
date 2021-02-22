@@ -7,7 +7,10 @@ jobs:
   test:
     name: Test Thread
     runs-on: macos-latest
-    container: cypress/browsers:node12.18.3-chrome87-ff82
+    strategy:
+        fail-fast: false
+        matrix:
+            containers: [1]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
