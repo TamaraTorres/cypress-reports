@@ -1,0 +1,27 @@
+{
+  "name": "cypress-simple-ci-report",
+  "version": "1.0.0",
+  "description": "Test",
+  "main": "index.js",
+  "dependencies": {
+    "cypress": "^5.3.0"
+  },
+  "devDependencies": {
+    "cypress-multi-reporters": "^1.4.0",
+    "mocha": "^8.0.1",
+    "mochawesome": "^6.1.1",
+    "mochawesome-merge": "^4.1.0",
+    "mochawesome-report-generator": "^5.1.0"
+  },
+  "scripts": {
+    "test": "cypress run",
+    "clean:reports": "rm -rf cypress/results",
+    "test:cypress": "npm run clean:reports && cypress run --browser chrome --headless ",
+    "report:merge": "mochawesome-merge cypress/results/json/*.json > cypress/results/json/index.json",
+    "report:generate": "marge cypress/results/json/index.json --reportDir public --assetsDir public/assets --reportPageTitle index.html",
+    "create:html:report": "marge --reportDir cypress/results/TestReport -t Cypress_Test_Report -p Cypress_HMTL_Report -f Cypress_HMTL_Report --timestamp mmddyyyy_HHMMss --charts true cypress/results/json/index.json",
+    "generate:html:report": "npm run report:merge && npm run create:html:report"    
+  },
+  "author": "Tammy",
+  "license": "UNLICENSED"
+}

@@ -1,0 +1,35 @@
+name: Create Cypress report
+on:
+  push:
+    branches:
+      - 'master'
+jobs:
+  test:
+    name: Test Thread
+    runs-on: macos-latest
+    container: cypress/browsers:node12.18.3-chrome87-ff82
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Install dependencies
+        run: |
+          npm ci
+          $(npm bin)/cypress cache path
+          $(npm bin)/cypress cache list
+          $(npm bin)/cypress verify
+      - name: Run Cypress tests
+        timeout-minutes: 15
+        run: npm run test:cypress
+        continue-on-error: true
+
+      - name: Merge test results into one
+        run: npm run report:merge
+
+      - name: Generate HTML report
+        run: npm run report:generate
+
+      - name: Deploy report page
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public

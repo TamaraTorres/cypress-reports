@@ -1,0 +1,9 @@
+node_modules
+/public
+*.mp4
+*.png
+index.json
+/cypress/results
+
+package-lock.json
+.DS_Store

@@ -1,0 +1,10 @@
+{
+    "reporter": "cypress-multi-reporters",
+    "reporterOptions": {
+        "configFile": "reporter-config.json"
+    },
+    "video": false,
+    "screenshotOnRunFailure": true,
+    "screenshotsFolder": "cypress/results/screenshots",
+    "trashAssetsBeforeRuns": true
+}
